@@ -12,19 +12,21 @@
     </header>
     <main>
       <div  class="outter">
-        <form action="/login" method="post">
-          <label for="email">
-            <h2>Email Id:</h2>
-            <input name="email" type="email" placeholder="tonystark@gmail.com" id="email" required>
-          </label>
-          <label for="password">
-            <h2>Password:</h2>
-            <input name="password" type="password" id="password" required>
-          </label>
-          <br>
-          <input type="submit" id="submit">
-        </form>
-        <p style="text-align: center;">Click here to <a href="/register">register</a> if not registered</p>
+        <div class="inner">
+          <form action="/login" method="post">
+            <label for="email">
+              <h2>Email Id:</h2>
+              <input name="email" type="email" placeholder="tonystark@gmail.com" id="email" required>
+            </label>
+            <label for="password">
+              <h2>Password:</h2>
+              <input name="password" type="password" id="password" required>
+            </label>
+            <br>
+            <input type="submit" id="submit">
+          </form>
+          <p style="text-align: center;">Click here to <a href="/register">register</a> if not registered</p>
+        </div>
       </div>
     </main>
     <footer>

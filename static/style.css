@@ -10,14 +10,22 @@ header h1{
   color: white;
   background-color: rgb(23, 23, 51);
 }
+header{
+  height: 39px;
+}
 
 .outter {
-  margin: 0rem 10rem 1rem 10rem;
-  padding:1rem 1rem 1rem 1rem;
+  padding:2rem 1rem 1rem 1rem;
+  display: flex;
+  justify-content: center;
 }
+
 
 body {
   height: 100vh;
+  display:flex;
+  flex-direction: column;
+
 }
 
 input {
@@ -40,12 +48,13 @@ footer {
   color: white;
 }
 
-.home {
-  font-size: 1rem;
-}
 
 #submit {
   border: 1px transparent black;
   padding: 2px;
   border-radius: .2rem;
+}
+
+.inner{
+  width: 250px;
 }

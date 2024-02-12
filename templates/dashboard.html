@@ -12,13 +12,15 @@
     </header>
     <main>
       <div class="outter" >
-        <h2>Name:</h2>
-        <p>{{ current_user.name }}</p>
-        <br>
-        <h2>Email:</h2>
-        <p>{{ current_user.email }}</p>
-        <br><br>
-        <p style="text-align: center;">Click here to <a href="/logout">logout</a></p>
+        <div class="inner">
+          <h2>Name:</h2>
+          <p>{{ current_user.name }}</p>
+          <br>
+          <h2>Email:</h2>
+          <p>{{ current_user.email }}</p>
+          <br><br>
+          <p style="text-align: center;">Click here to <a href="/logout">logout</a></p>
+        </div>
       </div>
     </main>
     <footer>
