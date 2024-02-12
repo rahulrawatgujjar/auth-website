@@ -4,3 +4,4 @@ sqlalchemy
 psycopg2-binary
 Werkzeug
 python-dotenv
+flask_login
