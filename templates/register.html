@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Register page</title>
+  </head>
+  <body>
+    <header>
+      <h1>Register Page</h1>
+    </header>
+    <main>
+      <div class="outter">
+        <form action="/register" method="post">
+          <label for="name">
+            <h2>Name:</h2>
+            <input name="name" type="text" placeholder="Tony Stark" id="name" required>
+          </label>
+          <label for="email">
+            <h2>Email Id:</h2>
+            <input name="email" type="email" placeholder="tonystark@gmail.com" id="email" required>
+          </label>
+          <label for="password">
+            <h2>Password:</h2>
+            <input name="password" type="password" id="password" required>
+          </label>
+          <br>
+          <input type="submit" id="submit">
+        </form>
+        <p style="text-align: center;">Click here to <a href="/login">login</a> if already registered</p>
+      </div>
+    </main>
+    <footer>
+      <p>Made by Rahul Rawat Gujjar</p>
+    </footer>
+  </body>
+</html>

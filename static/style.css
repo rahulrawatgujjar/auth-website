@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+header h1{
+  text-align: center;
+  border-bottom: 2px solid black;
+  color: white;
+  background-color: rgb(23, 23, 51);
+}
+
+.outter {
+  margin: 0rem 10rem 1rem 10rem;
+  padding:1rem 1rem 1rem 1rem;
+}
+
+body {
+  height: 100vh;
+}
+
+input {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+main {
+  background-image:url("/static/auth_background.jpg");
+  background-size: cover;
+  height: 100%;
+}
+
+footer {
+  border-top: 2px solid white;
+  height: 3rem;
+  text-align: center;
+  padding-top: 1rem;
+  background-color:rgb(23, 23, 51);
+  color: white;
+}
+
+.home {
+  font-size: 1rem;
+}
+
+#submit {
+  border: 1px transparent black;
+  padding: 2px;
+  border-radius: .2rem;
+}
