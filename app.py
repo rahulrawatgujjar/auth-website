@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify,redirect,url_for
+from flask import Flask, render_template, request, jsonify,redirect,url_for,flash
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 # from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -57,20 +57,21 @@ def login():
       parameters={
         "email":email
       }
-      result=conn.execute(query,parameters)
+      result=conn.execute(query,parameters).first()
       conn.commit()
-      entry=result.first()
-      if entry:
-        result=entry._asdict()
+      if result:
+        result=result._asdict()
+        if check_password_hash(result["password"],password):
+          user=User(user_id=result["id"],name=result["name"],email=result["email"])
+          login_user(user)
+          return redirect(url_for("dashboard"))
+        else:
+          flash("Invalid Password","error")
       else:
-        return "Invalid Username"
-    if check_password_hash(result["password"],password):
-      user=User(user_id=result["id"],name=result["name"],email=result["email"])
-      login_user(user)
-      return redirect(url_for("dashboard"))
-    else:
-      return "Invalid Password"
+        flash("Invalid Username","error")
+      return render_template("login.html")
   return render_template("login.html")
+
 
 
 @app.route("/register",methods=["GET","POST"])
@@ -85,22 +86,24 @@ def register():
       parameters={
         "email":email
       }
-      result=conn.execute(query,parameters)
-      entry=result.first()
-      if entry:
-        conn.commit()
-        return "Email already found"
-      # writing signup to database
-      query=text("INSERT INTO users(name,email,password) VALUES(:name,:email,:password)")
-      parameters={
-        "name":name,
-        "email":email,
-        "password":hashed_password
-      }
-      conn.execute(query,parameters)
+      result=conn.execute(query,parameters).first()
       conn.commit()
-    return redirect(url_for("login"))
+      if result:
+        flash("Email alrgeady exists","error")
+        return render_template("register.html")
+      else:
+        query=text("INSERT INTO users(name,email,password) VALUES(:name,:email,:password)")
+        parameters={
+          "name":name,
+          "email":email,
+          "password":hashed_password
+        }
+        conn.execute(query,parameters)
+        conn.commit()
+        flash("Registration successfull. Please login.","success")
+        return redirect(url_for("login"))
   return render_template("register.html")
+
 
 @app.route("/dashboard")
 @login_required

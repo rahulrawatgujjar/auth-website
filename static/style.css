@@ -58,3 +58,15 @@ footer {
 .inner{
   width: 250px;
 }
+
+.alert{
+  padding-bottom: 1rem;
+}
+
+.alert-success{
+  color: rgb(48, 178, 48);
+}
+
+.alert-error{
+  color: red;
+}
