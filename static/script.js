@@ -12,9 +12,8 @@ submitBtn.addEventListener("click",async(evt)=>{
   } else{
     return;
   }
-  console.log("submit button is clicked");
+  // console.log("submit button is clicked");
   loader.style.display= "block";
-  console.log(loader);
   password=passwordEmt.value;
   email=emailEmt.value;
   if (password.length<3){
@@ -52,7 +51,7 @@ async function loginCredential(password,email){
       errorBlock.innerText=`${data.error}`;
     }
   } catch(err){
-    console.log("Error occured",err);
+    // console.log("Error occured",err);
     errorBlock.innerText="Error occured while processing your request";
   }
 
@@ -77,7 +76,7 @@ async function registerCredential(name,email,password){
       errorBlock.innerText=`${data.error}`;
     }
   } catch(err){
-    console.log("Error occured",err);
+    // console.log("Error occured",err);
     errorBlock.innerText="Error occured while processing your request";
   }
 }
