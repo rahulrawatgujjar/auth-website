@@ -4,31 +4,33 @@ const emailEmt=document.querySelector("#email");
 const passwordEmt=document.querySelector("#password");
 const form=document.querySelector("form");
 const flash=document.querySelector(".server-msg");
+const loader=document.querySelector(".loader");
 
-// to check username and password
-submitBtn.addEventListener("click",(evt)=>{
+submitBtn.addEventListener("click",async(evt)=>{
   if (form.checkValidity()) {
     evt.preventDefault();
   } else{
     return;
   }
   console.log("submit button is clicked");
+  loader.style.display= "block";
+  console.log(loader);
   password=passwordEmt.value;
   email=emailEmt.value;
-  if (email.trim() === "" || password.trim() === "") {
-    errorBlock.innerText = "Email and password are required";
-    return;
-  }
-  if (0 && password.length<6){
-    errorBlock.innerText="Password must be at least 6 characters long";
+  if (password.length<3){
+    errorBlock.innerText="Password must be at least 3 characters long";
   } else {
     if (form.getAttribute("id")=="login-form"){
-      loginCredential(password,email);
+      await loginCredential(password,email);
     } else{
       const nameEmt= document.querySelector("#name");
-      registerCredential(nameEmt.value,email,password);
+      await registerCredential(nameEmt.value,email,password);
     }
   }
+  loader.style.display = "none";
+  setTimeout(()=>{
+    errorBlock.innerText="";
+  },5000)
 });
 
 async function loginCredential(password,email){

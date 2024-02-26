@@ -75,3 +75,22 @@ footer {
   color: red;
   padding-bottom: 1rem;
 }
+
+.loader {
+  width: 20px;
+  height: 20px;
+  border: 2px solid white;
+  border-top: 2px solid rgb(23, 23, 51);
+  border-radius: 50%;
+  animation: loaderAnimate 1s ease-in-out 0s infinite normal;
+  margin-left: 100px;
+}
+
+@keyframes loaderAnimate{
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
