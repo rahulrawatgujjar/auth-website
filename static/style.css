@@ -70,3 +70,8 @@ footer {
 .alert-error{
   color: red;
 }
+
+.errorBlock{
+  color: red;
+  padding-bottom: 1rem;
+}

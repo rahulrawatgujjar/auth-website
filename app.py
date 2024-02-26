@@ -50,8 +50,8 @@ def home():
 @app.route("/login",methods=["GET","POST"])
 def login():
   if request.method=="POST":
-    data=request.form
-    email,password=data["email"],data["password"]
+    data=request.get_json()
+    email,password=data.get("email"),data.get("password")
     with engine.connect() as conn:
       query=text("SELECT id,name,email,password FROM users WHERE email=:email")
       parameters={
@@ -64,20 +64,18 @@ def login():
         if check_password_hash(result["password"],password):
           user=User(user_id=result["id"],name=result["name"],email=result["email"])
           login_user(user)
-          return redirect(url_for("dashboard"))
+          return jsonify({"valid":True, "redirectUrl":"/dashboard"})
         else:
-          flash("Invalid Password","error")
+          return jsonify({"valid":False, "error":"Invalid Password"})
       else:
-        flash("Invalid Username","error")
-      return render_template("login.html")
+        return jsonify({"valid":False,"error":"Invalid Username"})
   return render_template("login.html")
-
 
 
 @app.route("/register",methods=["GET","POST"])
 def register():
   if request.method=="POST":
-    data=request.form
+    data=request.get_json()
     name,email,password=data["name"],data["email"],data["password"]
     hashed_password=generate_password_hash(password)
     with engine.connect() as conn:
@@ -89,8 +87,7 @@ def register():
       result=conn.execute(query,parameters).first()
       conn.commit()
       if result:
-        flash("Email alrgeady exists","error")
-        return render_template("register.html")
+        return jsonify({"valid":False, "error":"Email alrgeady exists"})
       else:
         query=text("INSERT INTO users(name,email,password) VALUES(:name,:email,:password)")
         parameters={
@@ -101,7 +98,7 @@ def register():
         conn.execute(query,parameters)
         conn.commit()
         flash("Registration successfull. Please login.","success")
-        return redirect(url_for("login"))
+        return jsonify({"valid":True, "redirectUrl":"/login"})
   return render_template("register.html")
 
 
@@ -115,6 +112,8 @@ def dashboard():
 def logout():
   logout_user()
   return redirect(url_for("login"))
+
+
 
 
 

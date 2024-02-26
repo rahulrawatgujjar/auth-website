@@ -13,7 +13,7 @@
     <main>
       <div class="outter">
         <div class="inner">
-          <form action="/register" method="post">
+          <form id="reg-form" action="/register" method="post">
             <label for="name">
               <h2>Name:</h2>
               <input name="name" type="text" placeholder="Tony Stark" id="name" required>
@@ -30,6 +30,7 @@
             <input type="submit" id="submit">
           </form>
           {% include "error.html" %}
+          <div class="errorBlock"></div>
           <p style="text-align: center;">Click here to <a href="/login">login</a> if already registered</p>
         </div>
       </div>
@@ -37,5 +38,6 @@
     <footer>
       <p>Made by Rahul Rawat Gujjar</p>
     </footer>
+    <script src="/static/script.js"></script>
   </body>
 </html>
